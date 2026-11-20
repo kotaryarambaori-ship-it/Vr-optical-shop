@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10243a">
+  <title>V+R Optical Shop | Online Eyewear</title>
+  <meta name="description" content="V+R Optical Shop - चश्मे और eyewear की ऑनलाइन दुकान।">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="logo">V+R</div>
+    <div>
+      <h1>V+R Optical Shop</h1>
+      <small>Vision • Style • Comfort</small>
+    </div>
+  </div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <nav id="nav">
+    <a href="#home" onclick="closeMenu()">होम</a>
+    <a href="#products" onclick="closeMenu()">प्रोडक्ट</a>
+    <a href="#gallery" onclick="closeMenu()">गैलरी</a>
+    <a href="#about" onclick="closeMenu()">हमारे बारे में</a>
+    <a href="#contact" onclick="closeMenu()">संपर्क</a>
+    <button onclick="showAccount()">Login</button>
+    <button onclick="showCart()">🛒 Cart <span id="cartCount">0</span></button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="tag">WELCOME TO V+R OPTICAL SHOP</span>
+      <h2>आपकी आंखों के लिए<br><span>बेहतरीन अंदाज</span></h2>
+      <p>Stylish Sunglasses, Computer Glasses और शानदार Eyewear Collection.</p>
+      <a href="#products" class="primary-btn">प्रोडक्ट देखें</a>
+      <a href="https://wa.me/918840729301" class="whatsapp-btn" target="_blank">WhatsApp करें</a>
+    </div>
+    <div class="hero-art">
+      <div class="glasses">👓</div>
+      <p>STYLE YOUR VISION</p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div>👓 <b>Stylish Frames</b><small>नए डिजाइन</small></div>
+    <div>🕶️ <b>Sun Glasses</b><small>शानदार कलेक्शन</small></div>
+    <div>💻 <b>Computer Glasses</b><small>डेली यूज</small></div>
+    <div>📞 <b>Customer Support</b><small>सीधा संपर्क</small></div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="section-heading">
+      <span>OUR COLLECTION</span>
+      <h2>हमारे प्रोडक्ट</h2>
+      <p>अपनी पसंद का चश्मा चुनें</p>
+    </div>
+
+    <div class="filters">
+      <input id="search" type="search" placeholder="प्रोडक्ट खोजें..." oninput="renderProducts()">
+      <select id="category" onchange="renderProducts()">
+        <option value="">सभी कैटेगरी</option>
+        <option value="Sunglasses">Sunglasses</option>
+        <option value="Eyeglasses">Eyeglasses</option>
+        <option value="Computer Glasses">Computer Glasses</option>
+        <option value="Kids">Kids</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div id="productsList" class="product-grid">
+      <p>प्रोडक्ट लोड हो रहे हैं...</p>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div>
+      <span>V+R OPTICAL SHOP</span>
+      <h2>अपना नया लुक चुनें!</h2>
+      <p>अपनी पसंद के फ्रेम और सनग्लासेस के लिए आज ही संपर्क करें।</p>
+      <a href="https://wa.me/918840729301" target="_blank" class="primary-btn">अभी WhatsApp करें</a>
+    </div>
+    <div class="offer-icon">🕶️</div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="section-heading">
+      <span>OUR GALLERY</span>
+      <h2>फोटो गैलरी</h2>
+      <p>हमारी दुकान और कलेक्शन की तस्वीरें</p>
+    </div>
+    <div id="galleryList" class="gallery-grid"></div>
+  </section>
+
+  <section class="section about" id="about">
+    <div>
+      <span class="tag">ABOUT OUR SHOP</span>
+      <h2>V+R Optical Shop</h2>
+      <p>
+        V+R Optical Shop में आपका स्वागत है। यहां आपको चश्मे,
+        सनग्लासेस और अन्य eyewear प्रोडक्ट की जानकारी मिलेगी।
+        अपने पसंदीदा प्रोडक्ट के बारे में जानकारी और ऑर्डर के लिए
+        हमसे संपर्क करें।
+      </p>
+      <p><b>दुकान:</b> 60 Feet Road, Optical Shop – Tilaahpur Mod</p>
+      <p><b>मोबाइल:</b> 8840729301</p>
+    </div>
+    <div class="about-icon">👓</div>
+  </section>
+
+  <section class="section account-section" id="account">
+    <div class="section-heading">
+      <span>YOUR ACCOUNT</span>
+      <h2>Login / Register</h2>
+    </div>
+
+    <div class="account-box">
+      <div class="auth-forms">
+        <form onsubmit="registerUser(event)">
+          <h3>नया अकाउंट बनाएं</h3>
+          <input id="regName" placeholder="आपका नाम" required>
+          <input id="regEmail" type="email" placeholder="Email" required>
+          <input id="regPassword" type="password" placeholder="Password (कम से कम 8 अक्षर)" minlength="8" required>
+          <button class="primary-btn">Register</button>
+        </form>
+
+        <form onsubmit="loginUser(event)">
+          <h3>पहले से अकाउंट है?</h3>
+          <input id="loginEmail" type="email" placeholder="Email" required>
+          <input id="loginPassword" type="password" placeholder="Password" required>
+          <button class="primary-btn">Login</button>
+        </form>
+      </div>
+      <div id="accountInfo"></div>
+    </div>
+  </section>
+
+  <section class="section admin-section" id="admin" hidden>
+    <div class="section-heading">
+      <span>SHOP MANAGEMENT</span>
+      <h2>Admin Panel</h2>
+      <p>यह सेक्शन सिर्फ Admin के लिए है।</p>
+    </div>
+
+    <div class="admin-box">
+      <h3>नया प्रोडक्ट जोड़ें</h3>
+      <form id="productForm" onsubmit="addProduct(event)">
+        <input name="name" placeholder="प्रोडक्ट का नाम" required>
+        <select name="category">
+          <option>Sunglasses</option>
+          <option>Eyeglasses</option>
+          <option>Computer Glasses</option>
+          <option>Kids</option>
+          <option>Other</option>
+        </select>
+        <textarea name="description" placeholder="प्रोडक्ट की जानकारी"></textarea>
+        <input name="price" type="number" min="0" step="0.01" placeholder="कीमत ₹" required>
+        <input name="discount_price" type="number" min="0" step="0.01" placeholder="डिस्काउंट कीमत (वैकल्पिक)">
+        <input name="stock" type="number" min="0" placeholder="स्टॉक" value="1" required>
+        <label>प्रोडक्ट की फोटो चुनें</label>
+        <input name="image" type="file" accept="image/jpeg,image/png,image/webp">
+        <button class="primary-btn">प्रोडक्ट सेव करें</button>
+      </form>
+
+      <hr>
+      <h3>गैलरी में फोटो जोड़ें</h3>
+      <form id="galleryForm" onsubmit="addGallery(event)">
+        <input name="title" placeholder="फोटो का नाम">
+        <input name="image" type="file" accept="image/jpeg,image/png,image/webp" required>
+        <button class="primary-btn">फोटो अपलोड करें</button>
+      </form>
+
+      <hr>
+      <h3>ऑर्डर मैनेज करें</h3>
+      <button class="primary-btn" onclick="loadAdminOrders()">ऑर्डर देखें</button>
+      <div id="adminOrders"></div>
+
+      <hr>
+      <h3>ग्राहक की पूछताछ</h3>
+      <button class="primary-btn" onclick="loadEnquiries()">पूछताछ देखें</button>
+      <div id="enquiriesList"></div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="section-heading">
+      <span>CONTACT US</span>
+      <h2>हमसे संपर्क करें</h2>
+      <p>कोई सवाल है? हमें मैसेज भेजें।</p>
+    </div>
+    <div class="contact-box">
+      <form onsubmit="sendEnquiry(event)">
+        <input id="enqName" placeholder="आपका नाम" required>
+        <input id="enqMobile" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" required>
+        <textarea id="enqMessage" placeholder="अपना मैसेज लिखें" required></textarea>
+        <button class="primary-btn">मैसेज भेजें</button>
+      </form>
+      <div class="contact-details">
+        <h3>V+R Optical Shop</h3>
+        <p>📍 60 Feet Road, Optical Shop – Tilaahpur Mod</p>
+        <p>📞 8840729301</p>
+        <a href="https://wa.me/918840729301" target="_blank" class="whatsapp-btn">WhatsApp पर बात करें</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="logo">V+R</div>
+  <h2>V+R Optical Shop</h2>
+  <p>Vision • Style • Comfort</p>
+  <p>Mobile: 8840729301</p>
+  <p>© <span id="year"></span> V+R Optical Shop. All Rights Reserved.</p>
+</footer>
+
+<div class="floating-actions">
+  <button onclick="showCart()" aria-label="Cart">🛒</button>
+  <a href="https://wa.me/918840729301" target="_blank" aria-label="WhatsApp">☏</a>
+</div>
+
+<div id="cartModal" class="modal" onclick="closeModalOutside(event,'cartModal')">
+  <div class="modal-content">
+    <button class="close-btn" onclick="hideCart()">×</button>
+    <h2>आपका Cart</h2>
+    <div id="cartItems"></div>
+    <h3 id="cartTotal">Total: ₹0</h3>
+    <form onsubmit="placeOrder(event)">
+      <input id="orderName" placeholder="आपका नाम" required>
+      <input id="orderMobile" placeholder="मोबाइल नंबर" maxlength="10" required>
+      <textarea id="orderAddress" placeholder="पूरा पता" required></textarea>
+      <button class="primary-btn">ऑर्डर बुक करें</button>
+    </form>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
